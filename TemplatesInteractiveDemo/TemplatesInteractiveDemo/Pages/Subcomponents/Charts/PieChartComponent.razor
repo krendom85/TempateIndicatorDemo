@@ -1,0 +1,32 @@
+﻿@using Blazorise.Charts
+
+<PieChart TItem="double" @ref="pieChart" Data="pieChartData" />
+
+@code {
+    private PieChart<double> pieChart;
+    private ChartData<double> pieChartData;
+
+    protected override void OnInitialized()
+    {
+        pieChartData = new ChartData<double>
+            {
+                Labels = new List<object> { "Categoría 1", "Categoría 2", "Categoría 3" },
+                Datasets = new List<ChartDataset<double>>
+            {
+                new PieChartDataset<double>
+                {
+                    Data = new List<double> { 30, 40, 30 },
+                    BackgroundColor = new List<string> { "#0044cc", "#88aaff", "#cce6ff" }
+                }
+            }
+            };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await pieChart.Update();
+        }
+    }
+}

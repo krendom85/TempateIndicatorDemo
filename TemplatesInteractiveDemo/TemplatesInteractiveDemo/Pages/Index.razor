@@ -1,0 +1,49 @@
+﻿@page "/"
+@using TemplatesInteractiveDemo.Pages.Subcomponents.Charts
+
+<style>
+    .dashboard-container {
+    background-color: white;
+    color: #0044cc; /* Azul de la página */
+    padding: 20px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #f9f9f9;
+        border: 1px solid #0044cc;
+        padding: 10px;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2>Tablero de Indicadores</h2>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <PieChartComponent />
+        </div>
+        <div class="grid-item">
+            <ScatterChartComponent />
+        </div>
+
+        <div class="grid-item">
+            <BarChartComponent/>
+        </div>
+
+        <div class="grid-item">
+            <HorizontalBarChartComponent />
+        </div>
+
+        <div class="grid-item">
+            <LinearChartComponent />
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@using Blazorise.Charts
+
+
+<div class="chart-container">
+    <PolarAreaChart TItem="double" @ref="polarAreaChart" />
+</div>
+
+@code {
+    private PolarAreaChart<double> polarAreaChart;
+
+
+
+    // Datos para el gráfico
+
+    private readonly PolarAreaChartDataset<double> dataset = new()
+
+        {
+
+            BackgroundColor = new List<string> { "#4B9CD3", "#F28D35", "#75C9A8", "#E7485A", "#F5E740" },
+
+            BorderColor = "#FFFFFF",
+
+            BorderWidth = 2,
+
+            Data = new List<double> { 20, 35, 45, 30, 15 },
+
+            Label = "Muestras"
+
+        };
+
+
+
+    // Etiquetas para los segmentos del gráfico
+
+    private readonly List<string> labels = new() { "A", "B", "C", "D", "E" };
+
+
+
+    // Variable para ejecutar solo una vez la configuración
+
+    private bool isChartInitialized = false;
+
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+
+    {
+
+        if (firstRender)
+
+        {
+
+            isChartInitialized = true;
+
+            await SetupChart();
+
+        }
+
+    }
+
+
+
+    private async Task SetupChart()
+
+    {
+
+        if (polarAreaChart != null)
+
+        {
+
+            await polarAreaChart.Clear();
+
+            await polarAreaChart.AddLabels(labels);
+
+            await polarAreaChart.AddDataSet(dataset);
+
+            await polarAreaChart.Update();
+
+        }
+
+    }
+}
